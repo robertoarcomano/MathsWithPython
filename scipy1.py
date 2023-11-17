@@ -32,9 +32,14 @@ print("linalg.solve(np.array([[1, 0],[0, 1]]),np.array([1, 3])):",
           )
       )
       )
+print()
+
 print("linalg.inv(np.array([[1, 0],[0, 1]])):\n",
       linalg.inv(np.array([
           [1, 0],
           [0, 1]
       ]))
       )
+print()
+
+print("linalg.eig([ [1, 0], [0, 4] ]):\n", linalg.eig([[1, 0], [0, 4]]))
