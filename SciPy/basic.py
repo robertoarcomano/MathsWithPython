@@ -1,8 +1,8 @@
 import scipy.integrate as integrate
 
-import numpy
+import numpy1
 import pylab
-from numpy import linalg as LA
+from numpy1 import linalg as LA
 
 def plot_sin():
     t = numpy.arange(-numpy.pi, numpy.pi, 0.01)

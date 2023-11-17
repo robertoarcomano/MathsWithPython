@@ -1,4 +1,4 @@
-import numpy as np
+import numpy1 as np
 from sklearn.naive_bayes import BernoulliNB
 
 
