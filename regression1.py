@@ -7,7 +7,11 @@ data = np.array([
     [2, 4],
     [3, 7],
     [4, 10],
-    [5, 11]
+    [5, 11],
+    [6, 30],
+    [7, 100],
+    [8, 150],
+    [9, 160]
 ])
 x = data[:, 0]
 y = data[:, 1]
@@ -39,19 +43,36 @@ print("Correlation coefficient:\n", correlation)
 xx = np.linspace(min(x), max(x), 100)
 yy = b * xx + a
 
-fn = np.polyfit(x, y, 1)
-yyy = np.polyval(fn, xx)
-print("fn:", fn)
-print("b,a:", b, a)
-
 plot.subplot(221)
 plot.plot(xx, yy)
 plot.scatter(x, y)
 plot.xlabel("Using Least square error")
 
 plot.subplot(222)
+fn = np.polyfit(x, y, 1)
+yyy = np.polyval(fn, xx)
+print("fn:", fn)
+print("b,a:", b, a)
 plot.plot(xx, yyy)
 plot.scatter(x, y)
 plot.xlabel("Using numpy.polyval()")
+
+plot.subplot(223)
+fn = np.polyfit(x, y, 4)
+yyy = np.polyval(fn, xx)
+print("fn:", fn)
+print("b,a:", b, a)
+plot.plot(xx, yyy)
+plot.scatter(x, y)
+plot.xlabel("Using numpy.polyval(4)")
+
+plot.subplot(224)
+fn = np.polyfit(x, y, 8)
+yyy = np.polyval(fn, xx)
+print("fn:", fn)
+print("b,a:", b, a)
+plot.plot(xx, yyy)
+plot.scatter(x, y)
+plot.xlabel("Using numpy.polyval(8)")
 
 plot.show()
