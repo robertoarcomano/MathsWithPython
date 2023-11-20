@@ -3,11 +3,11 @@ import matplotlib.pyplot as plot
 
 data = np.array([
     [0, 0],
-    [1, 1],
-    [2, 2],
-    [3, 3],
-    [4, 5],
-    [5, 6]
+    [1, 2],
+    [2, 4],
+    [3, 7],
+    [4, 10],
+    [5, 11]
 ])
 x = data[:, 0]
 y = data[:, 1]
@@ -36,8 +36,22 @@ print("Eigen values of covar(x,y):\n", np.linalg.eig(covar3))
 print(a, b)
 print("Correlation coefficient:\n", correlation)
 
-xx = np.linspace(-10, 10, 100)
+xx = np.linspace(min(x), max(x), 100)
 yy = b * xx + a
+
+fn = np.polyfit(x, y, 1)
+yyy = np.polyval(fn, xx)
+print("fn:", fn)
+print("b,a:", b, a)
+
+plot.subplot(221)
 plot.plot(xx, yy)
 plot.scatter(x, y)
+plot.xlabel("Using Least square error")
+
+plot.subplot(222)
+plot.plot(xx, yyy)
+plot.scatter(x, y)
+plot.xlabel("Using numpy.polyval()")
+
 plot.show()
