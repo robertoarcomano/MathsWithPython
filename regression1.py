@@ -28,7 +28,6 @@ covar2 = e_xy - e_x * e_y
 covar3 = np.cov(x, y, bias=True)
 b = covar1 / var_x
 a = e_y - b * e_x
-correlation = (covar1 / (var_x * var_y))
 correlation = np.sum((b * x + a - e_y)**2) / np.sum((y - e_y)**2)
 print("Covar1(x,y)(E[(x-E[x])(y-E[y])):", covar1)
 print("Covar2(x,y)(E[xy]-E[x]E[y]):", covar2)
