@@ -44,7 +44,7 @@ class Tax:
         return gross_income * m + p - capping - local_tax
 
     def get_net_incomes(self, gross_incomes):
-        return np.array([self.get_net_income(gross_income) for gross_income in gross_incomes])
+        return np.vectorize(self.get_net_income)(gross_incomes)
 
 
 nz_tax_data = {"name": "NZ", "color": "red", "rates": [10.5, 17.5, 30, 33, 39],
