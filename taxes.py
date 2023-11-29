@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plot
 from matplotlib import style
+import matplotlib
 
 
 class Tax:
@@ -71,22 +72,29 @@ taxes = np.array([tax_nz, tax_malta, tax_italy, tax_ireland, tax_uk, tax_us])
 MIN = 1
 MAX = 200000
 N = 100
+XLABEL = "Gross Income [Euro]"
+FONTSIZE = 4
+BIG_FONTSIZE = 5
+LINEWIDTH = 0.7
 style.use("bmh")
 x = np.array(np.linspace(MIN, MAX, N))
-
+matplotlib.rc('xtick', labelsize=FONTSIZE)
+matplotlib.rc('ytick', labelsize=FONTSIZE)
+plot.rcParams.update({'font.size': BIG_FONTSIZE})
 y = np.array([
-    [lambda t: t.get_net_incomes(x), "Gross Income", "Net Income"],
-    [lambda t: 100 * t.get_net_incomes(x) / x, "Gross Income", "% Net/Gross Income"],
-    [lambda t: t.get_net_incomes(x) - tax_italy.get_net_incomes(x), "Gross Income", "Net Income compared to Italy"],
-    [lambda t: 100 * t.get_net_incomes(x) / tax_italy.get_net_incomes(x), "Gross Income",
+    [lambda t: t.get_net_incomes(x), XLABEL, "Net Income [Euro]"],
+    [lambda t: 100 * t.get_net_incomes(x) / x, XLABEL, "% Net/Gross Income [Euro]"],
+    [lambda t: t.get_net_incomes(x) - tax_italy.get_net_incomes(x), XLABEL, "Net Income compared to Italy [Euro]"],
+    [lambda t: 100 * t.get_net_incomes(x) / tax_italy.get_net_incomes(x), XLABEL,
      "% Net Income compared to Italy"],
 ])
 for j in range(len(y)):
     plot.subplot(221 + j)
     for tax in taxes:
-        plot.plot(x, y[j][0](tax), label=tax.get_name(), color=tax.get_color())
+        plot.plot(x, y[j][0](tax), label=tax.get_name(), color=tax.get_color(), linewidth=LINEWIDTH)
         plot.xlabel(y[j][1])
         plot.ylabel(y[j][2])
     plot.figlegend() if not j else ""
-
+plot.tight_layout()
+plot.savefig("taxes.png", dpi=300)
 plot.show()
