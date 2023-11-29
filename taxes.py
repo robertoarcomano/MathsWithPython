@@ -88,13 +88,13 @@ y = np.array([
     [lambda t: 100 * t.get_net_incomes(x) / tax_italy.get_net_incomes(x), XLABEL,
      "% Net Income compared to Italy"],
 ])
-for j in range(len(y)):
-    plot.subplot(221 + j)
+for graph_i, (f, x_label, y_label) in enumerate(y):
+    plot.subplot(221 + graph_i)
     for tax in taxes:
-        plot.plot(x, y[j][0](tax), label=tax.get_name(), color=tax.get_color(), linewidth=LINEWIDTH)
-        plot.xlabel(y[j][1])
-        plot.ylabel(y[j][2])
-    plot.figlegend() if not j else ""
+        plot.plot(x, f(tax), label=tax.get_name(), color=tax.get_color(), linewidth=LINEWIDTH)
+        plot.xlabel(x_label)
+        plot.ylabel(y_label)
+    plot.figlegend() if not graph_i else ""
 plot.tight_layout()
 plot.savefig("taxes.png", dpi=300)
 plot.show()
