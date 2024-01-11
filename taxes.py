@@ -59,6 +59,8 @@ class Tax:
 tax_data = [
     {"name": "NZ", "color": "red", "rates": [10.5, 17.5, 30, 33, 39],
      "incomes": [14000, 48000, 70000, 180000], "currency_factor": 0.56},
+    {"name": "AUS", "color": "green", "rates": [0, 19, 32.5, 37, 45],
+     "incomes": [18200, 45000, 120000, 180000], "currency_factor": 0.61},
     {"name": "Malta", "color": "orange", "rates": [0, 15, 25, 35], "incomes": [9100, 14500, 60000],
      "currency_factor": 1,
      "capping": {"tax": 10, "yearly_cap": 2500}},
